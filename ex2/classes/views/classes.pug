@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .w3-top
+      .w3-bar.w3-black
+        a.w3-bar-item.w3-button(href='/') Home
+        a.w3-bar-item.w3-button(href='/classes') Classes
+        a.w3-bar-item.w3-button(href='/termos') Termos de índice
+
+  h1(style='margin-top: 50px; margin-left: 35px;')= title
+
+  p(style='margin-left: 35px; margin-right: 35px;') Estrutura hierárquica de classes que representam as funções e atividades executadas pela Administração Pública. Os processos de negócio são representados como classes de 3º nível, enquadrados em funções (classes de 1º nível) e subfunções (2º nível). As classes são constituídas por elementos informativos, agrupados por zonas, que as identificam e descrevem. Nas classes de 3º e 4º nível (subdivisão do processo de negócio para efeitos de avaliação), estes elementos destinam-se também a contextualizar e avaliar a informação.
+
+  .w3-container(style='margin-top: 35px;')
+    table.w3-text-black.w3-table-all.w3-hoverable.w3-centered.w3-large(style='margin-bottom: 50px;')
+        tr
+            th Código
+            th Título 
+        each c in classes
+            tr
+                td
+                    a(href='/classes/c' + c.codigo)= c.codigo
+                td= c.titulo 

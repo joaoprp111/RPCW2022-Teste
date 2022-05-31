@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  .w3-top
+      .w3-bar.w3-black
+        a.w3-bar-item.w3-button(href='/') Home
+        a.w3-bar-item.w3-button(href='/classes') Classes
+        a.w3-bar-item.w3-button(href='/termos') Termos de índice
+
+  h1(style='margin-top: 50px; margin-left: 35px;')= title
+
+  p(style='margin-left: 35px; margin-right: 35px;') Nível: #{classe.nivel} 
+  if classe.nivel > 1
+    p(style='margin-left: 35px; margin-right: 35px;') Processo pai: 
+        a(href='/classes/c' + classe.pai.codigo + '?origem=classe&idOrigem=' + classe.codigo)= classe.pai.codigo
+  p(style='margin-left: 35px; margin-right: 35px;') Título: #{classe.titulo} 
+  p(style='margin-left: 35px; margin-right: 35px;') Descrição: #{classe.descricao} 
+  p(style='margin-left: 35px; margin-right: 35px;') Status: #{classe.status}
+
+  if classe.filhos.length > 0
+    p(style='margin-left: 35px; margin-right: 35px;') Processos filho: 
+        ul.w3-ul(style='margin-left: 35px; margin-bottom: 60px;')
+            each f in classe.filhos 
+                li
+                  a(href='/classes/c' + f.codigo + '?origem=classe&idOrigem=' + classe.codigo)= f.codigo
+
+  if classe.nivel == 3 && classe.termosInd.length > 0
+    p(style='margin-left: 35px; margin-right: 35px;') Termos de índice deste processo:
+            ul.w3-ul(style='margin-left: 35px; margin-bottom: 60px;')
+                each t in classe.termosInd 
+                    li
+                    a(href='/termos')= t.termo
+
+  if classe.nivel == 1 && origem == undefined
+    .w3-bottom
+      .w3-bar.w3-black
+        a.w3-bar-item.w3-button(href='/classes') Voltar à página anterior
+  else if origem != undefined && origem == 'classe'
+    .w3-bottom
+      .w3-bar.w3-black
+        a.w3-bar-item.w3-button(href='/classes/c' + idOrigem + '?origem=classe&idOrigem=' + classe.codigo) Voltar à página anterior
+  else if origem != undefined && origem == 'termo'
+    .w3-bottom
+      .w3-bar.w3-black
+        a.w3-bar-item.w3-button(href='/termos') Voltar à página anterior

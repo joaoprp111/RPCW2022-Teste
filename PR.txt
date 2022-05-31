@@ -1,0 +1,35 @@
+Exercício 1:
+
+    1. Tratamento do dataset fornecido:
+        -> Visto que o dataset continha dois grupos (cidades e ligações), decidi dividi-lo em 2 datasets
+        -> Um ficou só com a lista das cidades, enquanto que outro ficou com a lista de ligações
+        -> Portanto os datasets finais são o cidades.json e o ligacoes.json, ambos no formato jsonArray (arrray de objetos)
+
+    2. Criação da base de dados e das coleções
+        -> Com o formato dos datasets em jsonArray comecei por utilizar o comando mongoimport para criar 2 coleções, uma para as cidades
+        e outra para as ligações 
+        -> Comandos: ./mongoimport -d MAPA2022 -c cidades --jsonArray "C:\Users\joaop\OneDrive\Documentos\Universidade\MEI\1_ano\2_sem\EL\RPCW\Teste-31-05-22\RPCW2022-Teste\ex1\cidades.json" 
+        e ./mongoimport -d MAPA2022 -c ligacoes --jsonArray "C:\Users\joaop\OneDrive\Documentos\Universidade\MEI\1_ano\2_sem\EL\RPCW\Teste-31-05-22\RPCW2022-Teste\ex1\ligacoes.json"
+        -> Pode ser necessário utilizar o comando mongod caso o serviço do MongoDB ainda não esteja a correr
+
+    3. Criação do servidor em nodejs 
+        -> Para criar o servidor comecei por executar o comando "express --view=pug mapa"
+        -> Fui para a pasta mapa e depois instalei as dependências com "npm i"
+        -> Instalei os módulos necessários "npm i mongoose nodemon --save"
+        -> Acrescentei um modo de "development" no package.json
+        -> O servidor pode ser lançado com "npm start" e fica à escuta na porta 3031
+        -> Todas as rotas implementadas podem ser testadas utilizando essa porta 
+
+Exercício 2:
+        -> Aquecimento descrito no ficheiro aquecimento.py, tem código e comentários, bem como as respostas 
+        -> R1: 18 e [750.10.001, 750.10.002, 750.10.300, 750.10.600, 750.10.601, 750.10.602, 750.20.001, 750.20.002, 750.20.003,
+# 750.20.300, 750.20.301, 750.20.600, 750.20.601, 750.30.001, 750.30.300, 750.30.600, 750.30.601, 750.30.602]
+        -> R2: 647
+        -> R3: 7
+        -> R4: 24
+        -> Gerei o token através de um post no postman, e guardei-o diretamente no código do novo servidor
+        -> Esse servidor foi criado da mesma forma que o do ex1, mas agora com o nome classes, também fica à escuta na porta 3031
+        -> Depois de estar nessa pasta, instalei novamente as dependências e os módulos axios e nodemon "npm i axios nodemon --save"
+        -> Utilizando o "npm start" pode ser lançado o servidor 
+        -> Acedendo à rota "/" aparece a página principal, e a partir daí é possível navegar por todo o conteúdo das páginas 
+        utilizando os botões 
